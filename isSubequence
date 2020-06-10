@@ -1,0 +1,63 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        
+          int counter=0;
+        boolean flag = false;
+        String newString = new String();
+    
+        if (s.isEmpty()) {
+        	return true;
+        }
+        
+       for(int i=0;i<s.length()-1;i++) {
+        	for(int j=1;j<s.length();j++) {
+        		if (s.charAt(i)==s.charAt(j)) {
+        			++counter;
+        			
+        			if (counter==s.length()-1&&s.length()<=t.length()) {        	        	
+        		        counter = 0;
+        		        for(int k=0;k<t.length()-1;k++) {
+        		        	for(int l=1;l<t.length();l++) {
+        		        		if (t.charAt(k)==t.charAt(l)) {
+        		        			++counter;
+        		        			String some = new String();
+        		        			some+=t.charAt(i);
+
+        		        			if (counter==t.length() && some.equals(s)) {		
+        		        	        		return true;
+        		        	        	}else {
+        		        	        		return false;
+        		        	        	}
+        		        	        }
+        		        	        
+        		        	        }
+        		        		}
+        		        		
+        		        	}
+        		        }
+        			
+        		}
+        		
+        	}
+        
+       counter =0 ;
+        for(int i=0;i<t.length();i++) {
+        		
+        		for(int j=0;j<s.length();j++) {
+        		if(s.charAt(j)==(t.charAt(i))){
+        			++counter;
+        			newString+=t.charAt(i);
+        	
+        			if(counter==s.length()&&newString.equals(s)) {
+        				
+        				flag = true;
+        				return flag;
+        			}
+        		
+        		}
+        	}
+        }
+        
+        return flag;
+    }
+}
