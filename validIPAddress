@@ -1,0 +1,66 @@
+
+	int counter = 0;
+	
+	if (IP.endsWith(".") || IP.endsWith(":")) {
+		return "Neither";
+	}
+	
+	
+	else if(IP.contains(".")) {
+
+        String[] parts = IP.split( "\\." );
+        
+        if ( parts.length != 4 ) {
+        	return "Neither";
+        }
+
+        for ( String s : parts ) {
+        	
+        	if(s.matches("[0-9]+") && s.length() <= 3) {
+        		if (s.startsWith("0") && s.length() !=1)
+        			return "Neither";
+     
+        		int i = Integer.parseInt( s );
+        		if ( (i < 0) || (i > 255) ) {
+        			return "Neither";
+        		}
+        }
+        	else {
+        		return "Neither";
+        	}
+        }
+        counter = 0;
+        return "IPv4";
+	}
+	
+	else if (IP.contains(":")) {
+		int counter1=0;
+		String result = "";
+        String[] parts = IP.split( "\\:" );
+        if ( parts.length != 8 ) {
+        	return "Neither";
+        }
+        
+        
+        for ( String s : parts ) {
+        	++counter;
+        	if (s.startsWith("0") && counter == 1)
+        		return "Neither";
+        	
+        	else if (s.matches("[0-9a-fA-F]+") && s.length() <= 4) {
+        		++counter1;
+        		if (counter1 == 8)
+        			result =  "IPv6";
+        		else 
+        			result = "Neither";
+        	}
+        }
+        counter = 0;
+        return result;
+        	
+		
+	}
+	
+	else {
+		return "Neither";
+	}
