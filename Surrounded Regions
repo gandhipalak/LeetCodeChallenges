@@ -1,0 +1,47 @@
+class Solution {
+    public void solve(char[][] board) {
+        
+      
+        
+        if (board.length==0 || board[0].length==0) {
+			return;
+		}
+		
+        
+        int m = board.length;
+		int n = board[0].length;
+		
+		for(int i=0;i<m;i++) {
+			for(int j=0;j<n;j++) {
+				if(i==0) {
+					System.out.print(board[i][j]+" ");
+				}else if(j==0) {
+					System.out.print(board[i][j]+" ");
+				}else if (i==m-1 ) {	
+					System.out.print(board[i][j]+" ");
+				}else if (j==n-1 ) {
+					System.out.print(board[i][j]+" ");
+				}else if (board[i][j]=='O') {
+					if (j+1==n-1 && board[i][j+1]=='O') {
+						System.out.print(board[i][j]+" ");
+					}else if (j-1==0 && board[i][j-1]=='O') {
+						System.out.print(board[i][j]+" ");
+					}else if (i-1==0 && board[i-1][j]=='O') {
+						System.out.print(board[i][j]+" ");
+					}else if (i+1==m-1&& board[i+1][j]=='O') {
+						System.out.print(board[i][j]+" ");
+					}
+					else {
+						board[i][j]='X';
+						System.out.print(board[i][j]+" ");
+					}
+				}
+				else {
+					
+					System.out.print(board[i][j]+" ");
+				}
+			}
+			System.out.println("");
+		}
+}
+}
